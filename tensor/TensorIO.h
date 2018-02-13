@@ -161,12 +161,12 @@ FASTOR_INLINE std::vector<std::vector<int>> index_generator() {
     while(1)
     {
         std::vector<int> current_idx; //current_idx.reserve(sizeof...(Rest)+2);
-        for(i = 0; i< sizeof...(Rest)+2; i++) {
+        for(i = 0; i< (int)sizeof...(Rest)+2; i++) {
             current_idx.push_back(a[i]);
         }
         idx[counter] = current_idx;
         counter++;
-        for(j = sizeof...(Rest)+2-1 ; j>=0 ; j--)
+        for(j = (int)sizeof...(Rest)+2-1 ; j>=0 ; j--)
         {
             if(++a[j]<maxes[j])
                 break;
@@ -188,11 +188,11 @@ FASTOR_HINT_INLINE std::ostream& operator<<(std::ostream &os, const Tensor<T,M,N
 
     constexpr int DimensionHolder[sizeof...(Rest)+2] = {M,N,Rest...};
     int prods = 1;
-    for (int i=0; i<a.Dimension-2; ++i) {
+    for (int i=0; i<(int)a.Dimension-2; ++i) {
         prods *= DimensionHolder[i];
     }
     int lastrowcol = 1;
-    for (int i=a.Dimension-2; i<a.Dimension; ++i) {
+    for (int i=a.Dimension-2; i<(int)a.Dimension; ++i) {
         lastrowcol *= DimensionHolder[i];
     }
 
@@ -242,4 +242,3 @@ FASTOR_HINT_INLINE std::ostream& operator<<(std::ostream &os, const Tensor<T,M,N
 }
 
 #endif // TENSOR_PRINT_H
-

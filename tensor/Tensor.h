@@ -573,7 +573,7 @@ public:
         using V = SIMDVector<T,DEFAULT_ABI>;
         constexpr int unroll_upto = V::unroll_size(Size);
         constexpr int stride = V::Size;
-        int i = 0;
+        FASTOR_INDEX i = 0;
 
         V vec =static_cast<T>(0);
         for (; i< unroll_upto; i+=stride) {
@@ -789,4 +789,3 @@ protected:
 
 
 #endif // TENSOR_H
-
